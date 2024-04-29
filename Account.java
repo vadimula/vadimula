@@ -1,9 +1,9 @@
 package sberPack;
 import java.util.Date;
 public class Account {
-    int id; //идентификатор счета
-    double balance; //остаток, баланс
-    double annualInterestRate; //годовая процентная ставка
+    private int id; //идентификатор счета
+    private double balance; //остаток, баланс
+    private static double annualInterestRate; //годовая процентная ставка
     Date dateCreated; //дата создания счета
     public double monthlyInterest; // ежемесячный процент
     // Конструктор
@@ -14,26 +14,26 @@ public class Account {
         dateCreated = new Date();
     }
     public Account(int _id, double _bal) {
-        id = _id;
-        balance = _bal;
+        this.id = _id;
+        this.balance = _bal;
         annualInterestRate = 0;
-        dateCreated = new Date();
+        this.dateCreated = new Date();
     }
     // setter-методы
     public void setId(int id) { this.id = id; }
-    public void setAnnualInterestRate(double ai) { this.annualInterestRate = ai;}
+    public static void setAnnualInterestRate(double ai) { annualInterestRate = ai;}
     public void setBalance(double bl) {this.balance = bl;}
     // Getter-методы
     public int getId() { return id; }
     public double getAnnualInterestRate() {
-
-        return annualInterestRate; }
+        return annualInterestRate;
+    }
     public double getBalance() { return balance; }
     // methods
     public double getMonthlyInterest() {
-        monthlyInterest = balance * annualInterestRate / 12;
+        monthlyInterest = balance * (annualInterestRate / 1200) ;
         return monthlyInterest;
     }
-    public void withdraw() {}
-    public void deposit() {}
+    public void withdraw(double sum) { this.balance -= sum; }
+    public void deposit(double sum) { this.balance += sum; }
 }
